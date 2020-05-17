@@ -20,7 +20,7 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: "Segoe UI", "Segoe UI Emoji", sans-serif;
   text-align: center;
 }
 </style>
