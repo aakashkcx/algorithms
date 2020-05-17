@@ -1,15 +1,16 @@
 <template>
   <div>
     <h1>Sorting Algorithms</h1>
-    <Display :array="array" :animate="!interval" />
     <div>
       <button @click="newArray">New Array</button>
     </div>
+    <Display :array="array" :animate="!interval" />
     <div>
       <button @click="bubbleSort">Bubble Sort</button>
       <button @click="insertionSort">Insertion Sort</button>
       <button @click="selectionSort">Selection Sort</button>
       <button @click="mergeSort">Merge Sort</button>
+      <button @click="quickSort">Quick Sort</button>
     </div>
     <div v-if="list">
       <button @click="start">⏮</button>
@@ -23,8 +24,14 @@
 </template>
 
 <script>
-import Display from "./SortingAlgorithms/components/Display";
-import { bubbleSort } from "./SortingAlgorithms/sorts";
+import Display from "./SortingAlgorithms/Display";
+import {
+  bubbleSort,
+  insertionSort,
+  selectionSort,
+  mergeSort,
+  quickSort,
+} from "./SortingAlgorithms/sorts";
 import { newArray } from "./SortingAlgorithms/util";
 
 export default {
@@ -72,13 +79,20 @@ export default {
       this.array = this.list.head;
     },
     insertionSort: function() {
-      this.array = this.array.sort((a, b) => a.value - b.value);
+      this.list = insertionSort(this.array);
+      this.array = this.list.head;
     },
     selectionSort: function() {
-      this.array = this.array.sort((a, b) => a.value - b.value);
+      this.list = selectionSort(this.array);
+      this.array = this.list.head;
     },
     mergeSort: function() {
-      this.array = this.array.sort((a, b) => a.value - b.value);
+      this.list = mergeSort(this.array);
+      this.array = this.list.head;
+    },
+    quickSort: function() {
+      this.list = quickSort(this.array);
+      this.array = this.list.head;
     },
   },
 };
