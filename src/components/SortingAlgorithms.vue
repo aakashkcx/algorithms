@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Sorting Algorithms</h1>
-    <Display :array="array" />
+    <Display :array="array" :animate="!interval" />
     <div>
       <button @click="newArray">New Array</button>
     </div>

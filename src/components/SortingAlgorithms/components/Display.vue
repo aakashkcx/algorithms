@@ -1,6 +1,8 @@
 <template>
   <div id="display">
-    <Item v-for="node in array" :key="node.key" :value="node.value" />
+    <transition-group :name="animate ? 'flip-list' : false" tag="div">
+      <Item v-for="node in array" :key="node.key" :value="node.value" />
+    </transition-group>
   </div>
 </template>
 
@@ -9,7 +11,7 @@ import Item from "./Item";
 
 export default {
   name: "display",
-  props: ["array"],
+  props: ["array", "animate"],
   components: { Item },
 };
 </script>
@@ -19,5 +21,8 @@ export default {
   height: 500px;
   width: 1000px;
   margin: auto;
+}
+.flip-list-move {
+  transition: transform 250ms;
 }
 </style>
