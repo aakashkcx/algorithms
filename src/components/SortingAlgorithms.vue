@@ -1,10 +1,10 @@
 <template>
   <div>
     <h1>Sorting Algorithms</h1>
+    <Display :array="array" :animate="!interval" />
     <div>
       <button @click="newArray">New Array</button>
     </div>
-    <Display :array="array" :animate="!interval" />
     <div>
       <button @click="bubbleSort">Bubble Sort</button>
       <button @click="insertionSort">Insertion Sort</button>
@@ -19,6 +19,10 @@
       <button @click="pause" v-if="interval">⏸</button>
       <button @click="next">⏩</button>
       <button @click="end">⏭</button>
+    </div>
+    <div v-if="list">
+      Comparisons: {{ list.comparisons }}, Swaps: {{ list.length }}, Time Taken:
+      {{ list.time.toFixed(3) }} ms
     </div>
   </div>
 </template>

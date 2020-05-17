@@ -2,57 +2,85 @@ import LinkedList from "./LinkedList";
 
 export const bubbleSort = (array) => {
   let list = new LinkedList();
+  list.comparisons = 0;
+  list.time = performance.now();
+
   array = [...array];
   list.add([...array]);
+
   for (let i = 0; i < array.length; i++) {
     for (let j = 1; j < array.length; j++) {
       if (array[j].value < array[j - 1].value) {
         [array[j], array[j - 1]] = [array[j - 1], array[j]];
         list.add([...array]);
       }
+      list.comparisons++;
     }
   }
+
+  list.time = performance.now() - list.time;
   return list;
 };
 
 export const insertionSort = (array) => {
   let list = new LinkedList();
+  list.comparisons = 0;
+  list.time = performance.now();
+
   array = [...array];
   list.add([...array]);
+
   for (let i = 1; i < array.length; i++) {
     for (let j = i; j > 0 && array[j - 1].value > array[j].value; j--) {
       [array[j], array[j - 1]] = [array[j - 1], array[j]];
       list.add([...array]);
+      list.comparisons++;
     }
   }
+
+  list.time = performance.now() - list.time;
   return list;
 };
 
 export const selectionSort = (array) => {
   let list = new LinkedList();
+  list.comparisons = 0;
+  list.time = performance.now();
+
   array = [...array];
   list.add([...array]);
+
   for (let i = 0; i < array.length - 1; i++) {
     let min = i;
-    for (let j = i + 1; j < array.length; j++)
+    for (let j = i + 1; j < array.length; j++) {
       if (array[j].value < array[min].value) min = j;
+      list.comparisons++;
+    }
     if (min != i) {
       [array[min], array[i]] = [array[i], array[min]];
       list.add([...array]);
     }
   }
+
+  list.time = performance.now() - list.time;
   return list;
 };
 
 export const mergeSort = (array) => {
   let list = new LinkedList();
+  list.comparisons = 0;
+  list.time = performance.now();
   array = [...array];
   list.add([...array]);
+  list.time = performance.now() - list.time;
   return list;
 };
 
 export const quickSort = (array) => {
   let list = new LinkedList();
+  list.comparisons = 0;
+  list.time = performance.now();
+
   array = [...array];
   list.add([...array]);
 
@@ -77,6 +105,7 @@ export const quickSort = (array) => {
         swap(i, pIndex);
         pIndex++;
       }
+      list.comparisons++;
     }
     swap(pIndex, end);
 
@@ -84,5 +113,6 @@ export const quickSort = (array) => {
     if (pIndex + 1 < end) stack.push([pIndex + 1, end]);
   }
 
+  list.time = performance.now() - list.time;
   return list;
 };
