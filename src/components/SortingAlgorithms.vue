@@ -41,16 +41,23 @@ export default {
 
   data() {
     return {
-      array: newArray(100, 100),
+      original: [],
+      array: [],
       list: null,
       interval: null,
     };
   },
 
+  created() {
+    this.newArray();
+  },
+
   methods: {
     newArray: function() {
-      this.array = newArray(100, 100);
+      this.original = newArray(100, 100);
+      this.array = this.original;
       this.list = null;
+      this.interval = null;
     },
     start: function() {
       if (this.list.head) this.array = this.list.head;
@@ -75,23 +82,23 @@ export default {
       this.interval = null;
     },
     bubbleSort: function() {
-      this.list = bubbleSort(this.array);
+      this.list = bubbleSort(this.original);
       this.array = this.list.head;
     },
     insertionSort: function() {
-      this.list = insertionSort(this.array);
+      this.list = insertionSort(this.original);
       this.array = this.list.head;
     },
     selectionSort: function() {
-      this.list = selectionSort(this.array);
+      this.list = selectionSort(this.original);
       this.array = this.list.head;
     },
     mergeSort: function() {
-      this.list = mergeSort(this.array);
+      this.list = mergeSort(this.original);
       this.array = this.list.head;
     },
     quickSort: function() {
-      this.list = quickSort(this.array);
+      this.list = quickSort(this.original);
       this.array = this.list.head;
     },
   },
