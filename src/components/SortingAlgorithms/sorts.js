@@ -1,7 +1,7 @@
-import ArrayLinkedList from "./ArrayLinkedList";
+import LinkedList from "./LinkedList";
 
 export const bubbleSort = (array) => {
-  let list = new ArrayLinkedList();
+  let list = new LinkedList();
   array = [...array];
   list.add([...array]);
   for (let i = 0; i < array.length; i++) {
@@ -16,7 +16,7 @@ export const bubbleSort = (array) => {
 };
 
 export const insertionSort = (array) => {
-  let list = new ArrayLinkedList();
+  let list = new LinkedList();
   array = [...array];
   list.add([...array]);
   for (let i = 1; i < array.length; i++) {
@@ -29,7 +29,7 @@ export const insertionSort = (array) => {
 };
 
 export const selectionSort = (array) => {
-  let list = new ArrayLinkedList();
+  let list = new LinkedList();
   array = [...array];
   list.add([...array]);
   for (let i = 0; i < array.length - 1; i++) {
@@ -45,14 +45,14 @@ export const selectionSort = (array) => {
 };
 
 export const mergeSort = (array) => {
-  let list = new ArrayLinkedList();
+  let list = new LinkedList();
   array = [...array];
   list.add([...array]);
   return list;
 };
 
 export const quickSort = (array) => {
-  let list = new ArrayLinkedList();
+  let list = new LinkedList();
   array = [...array];
   list.add([...array]);
 
