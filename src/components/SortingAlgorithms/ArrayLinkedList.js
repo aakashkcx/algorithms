@@ -4,8 +4,7 @@ export default class ArrayLinkedList {
     this.tail = null;
     this.length = 0;
   }
-  add(value) {
-    let node = { value, previous: null, next: null };
+  add(node) {
     if (!this.length) {
       this.head = node;
       this.tail = node;
