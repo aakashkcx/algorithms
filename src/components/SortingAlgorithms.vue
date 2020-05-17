@@ -41,7 +41,7 @@ export default {
 
   data() {
     return {
-      array: newArray(100),
+      array: newArray(100, 100),
       list: null,
       interval: null,
     };
@@ -49,7 +49,7 @@ export default {
 
   methods: {
     newArray: function() {
-      this.array = newArray(100);
+      this.array = newArray(100, 100);
       this.list = null;
     },
     start: function() {
