@@ -12,14 +12,12 @@
       <button @click="mergeSort">Merge Sort</button>
     </div>
     <div v-if="list">
-      <button @click="start">Start</button>
-      <button @click="previous">Previous</button>
-      <button @click="next">Next</button>
-      <button @click="end">End</button>
-    </div>
-    <div>
-      <button>Play</button>
-      <button>Pause</button>
+      <button @click="start">⏮</button>
+      <button @click="previous">⏪</button>
+      <button @click="play" v-if="!interval">▶</button>
+      <button @click="pause" v-if="interval">⏸</button>
+      <button @click="next">⏩</button>
+      <button @click="end">⏭</button>
     </div>
   </div>
 </template>
@@ -58,6 +56,16 @@ export default {
     },
     previous: function() {
       if (this.array.previous) this.array = this.array.previous;
+    },
+    play: function() {
+      this.interval = setInterval(() => {
+        if (this.array.next) this.array = this.array.next;
+        else this.pause();
+      }, 1);
+    },
+    pause: function() {
+      clearInterval(this.interval);
+      this.interval = null;
     },
     bubbleSort: function() {
       this.list = bubbleSort(this.array);
