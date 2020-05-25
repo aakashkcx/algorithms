@@ -5,7 +5,10 @@
         v-for="node in array"
         :key="node.key"
         class="item"
-        :style="{ height: node.value * 5 + 'px' }"
+        :style="{
+          height: node.value * 5 + 'px',
+          width: 1000 / array.length + 'px',
+        }"
       ></div>
     </transition-group>
   </div>
@@ -26,7 +29,6 @@ export default {
 }
 .item {
   display: inline-block;
-  width: 10px;
   background-color: black;
 }
 .flip-list-move {
