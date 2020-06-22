@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import SortingAlgorithms from "./components/SortingAlgorithms";
+import SortingAlgorithms from "./SortingAlgorithms/";
 
 export default {
   name: "App",

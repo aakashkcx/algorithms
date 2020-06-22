@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Sorting Algorithms</h1>
-    <Display :array="array" :animate="!interval" />
+    <Display :array="array" />
     <div>
       <button @click="newArray">New Array</button>
     </div>
@@ -21,26 +21,25 @@
       <button @click="end">⏭</button>
     </div>
     <div v-if="list">
-      Comparisons: {{ list.comparisons }}, Swaps: {{ list.length }}, Time Taken:
-      {{ list.time.toFixed(3) }} ms
+      Comparisons: {{ list.comparisons }}<br />
+      Swaps: {{ list.length }}<br />
+      Time Taken: {{ list.time.toFixed(3) }} ms
     </div>
   </div>
 </template>
 
 <script>
-import Display from "./SortingAlgorithms/Display";
+import Display from "./Display";
 import {
   bubbleSort,
   insertionSort,
   selectionSort,
   mergeSort,
   quickSort,
-} from "./SortingAlgorithms/sorts";
-import { newArray } from "./SortingAlgorithms/util";
+} from "./sorts";
 
 export default {
   name: "SortingAlgorithms",
-
   components: { Display },
 
   data() {
@@ -57,51 +56,56 @@ export default {
   },
 
   methods: {
-    newArray: function() {
-      this.original = newArray(100, 100);
+    newArray() {
+      this.original = [...Array(100)].map(() =>
+        Math.floor(Math.random() * 101)
+      );
       this.array = this.original;
       this.list = null;
       this.interval = null;
     },
-    start: function() {
+
+    start() {
       if (this.list.head) this.array = this.list.head;
     },
-    end: function() {
+    end() {
       if (this.list.tail) this.array = this.list.tail;
     },
-    next: function() {
+    next() {
       if (this.array.next) this.array = this.array.next;
     },
-    previous: function() {
+    previous() {
       if (this.array.previous) this.array = this.array.previous;
     },
-    play: function() {
+
+    play() {
       this.interval = setInterval(() => {
         if (this.array.next) this.array = this.array.next;
         else this.pause();
       }, 1);
     },
-    pause: function() {
+    pause() {
       clearInterval(this.interval);
       this.interval = null;
     },
-    bubbleSort: function() {
+
+    bubbleSort() {
       this.list = bubbleSort(this.original);
       this.array = this.list.head;
     },
-    insertionSort: function() {
+    insertionSort() {
       this.list = insertionSort(this.original);
       this.array = this.list.head;
     },
-    selectionSort: function() {
+    selectionSort() {
       this.list = selectionSort(this.original);
       this.array = this.list.head;
     },
-    mergeSort: function() {
+    mergeSort() {
       this.list = mergeSort(this.original);
       this.array = this.list.head;
     },
-    quickSort: function() {
+    quickSort() {
       this.list = quickSort(this.original);
       this.array = this.list.head;
     },

@@ -1,16 +1,13 @@
-import LinkedList from "./LinkedList";
+import SortingLinkedList from "./SortingLinkedList";
 
 export const bubbleSort = (array) => {
-  let list = new LinkedList();
-  list.comparisons = 0;
-  list.time = performance.now();
-
-  array = [...array];
+  let list = new SortingLinkedList();
   list.add([...array]);
 
+  array = [...array];
   for (let i = 0; i < array.length; i++) {
     for (let j = 1; j < array.length; j++) {
-      if (array[j].value < array[j - 1].value) {
+      if (array[j] < array[j - 1]) {
         [array[j], array[j - 1]] = [array[j - 1], array[j]];
         list.add([...array]);
       }
@@ -18,42 +15,36 @@ export const bubbleSort = (array) => {
     }
   }
 
-  list.time = performance.now() - list.time;
+  list.finish();
   return list;
 };
 
 export const insertionSort = (array) => {
-  let list = new LinkedList();
-  list.comparisons = 0;
-  list.time = performance.now();
-
-  array = [...array];
+  let list = new SortingLinkedList();
   list.add([...array]);
 
+  array = [...array];
   for (let i = 1; i < array.length; i++) {
-    for (let j = i; j > 0 && array[j - 1].value > array[j].value; j--) {
+    for (let j = i; j > 0 && array[j - 1] > array[j]; j--) {
       [array[j], array[j - 1]] = [array[j - 1], array[j]];
       list.add([...array]);
       list.comparisons++;
     }
   }
 
-  list.time = performance.now() - list.time;
+  list.finish();
   return list;
 };
 
 export const selectionSort = (array) => {
-  let list = new LinkedList();
-  list.comparisons = 0;
-  list.time = performance.now();
-
-  array = [...array];
+  let list = new SortingLinkedList();
   list.add([...array]);
 
+  array = [...array];
   for (let i = 0; i < array.length - 1; i++) {
     let min = i;
     for (let j = i + 1; j < array.length; j++) {
-      if (array[j].value < array[min].value) min = j;
+      if (array[j] < array[min]) min = j;
       list.comparisons++;
     }
     if (min != i) {
@@ -62,27 +53,23 @@ export const selectionSort = (array) => {
     }
   }
 
-  list.time = performance.now() - list.time;
+  list.finish();
   return list;
 };
 
 export const mergeSort = (array) => {
-  let list = new LinkedList();
-  list.comparisons = 0;
-  list.time = performance.now();
-  array = [...array];
+  let list = new SortingLinkedList();
   list.add([...array]);
-  list.time = performance.now() - list.time;
+  array = [...array];
+  list.finish();
   return list;
 };
 
 export const quickSort = (array) => {
-  let list = new LinkedList();
-  list.comparisons = 0;
-  list.time = performance.now();
+  let list = new SortingLinkedList();
+  list.add([...array]);
 
   array = [...array];
-  list.add([...array]);
 
   const swap = (a, b) => {
     if (a != b) {
@@ -101,7 +88,7 @@ export const quickSort = (array) => {
     let pIndex = start;
 
     for (let i = start; i < end; i++) {
-      if (array[i].value <= array[pivot].value) {
+      if (array[i] <= array[pivot]) {
         swap(i, pIndex);
         pIndex++;
       }
@@ -113,6 +100,6 @@ export const quickSort = (array) => {
     if (pIndex + 1 < end) stack.push([pIndex + 1, end]);
   }
 
-  list.time = performance.now() - list.time;
+  list.finish();
   return list;
 };
