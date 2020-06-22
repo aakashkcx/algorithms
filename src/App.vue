@@ -1,17 +1,16 @@
 <template>
   <div>
-    <SortingAlgorithms />
+    <nav>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/sorting-algorithms">Sorting Algorithms</router-link>
+    </nav>
+    <router-view />
   </div>
 </template>
 
 <script>
-import SortingAlgorithms from "./SortingAlgorithms/";
-
 export default {
   name: "App",
-  components: {
-    SortingAlgorithms,
-  },
 };
 </script>
 
