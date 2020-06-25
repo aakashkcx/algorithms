@@ -60,7 +60,54 @@ export const selectionSort = (array) => {
 export const mergeSort = (array) => {
   let list = new SortingLinkedList();
   list.add([...array]);
+
   array = [...array];
+
+  for (let size = 1; size < array.length; size *= 2) {
+    for (let left = 0; left < array.length - 1; left += 2 * size) {
+      let mid = Math.min(left + size - 1, array.length - 1);
+      let right = Math.min(left + 2 * size - 1, array.length - 1);
+
+      let n1 = mid - left + 1;
+      let n2 = right - mid;
+
+      let tempL = [];
+      let tempR = [];
+      for (let i = 0; i < n1; i++) tempL[i] = array[left + i];
+      for (let j = 0; j < n2; j++) tempR[j] = array[mid + 1 + j];
+
+      let i = 0;
+      let j = 0;
+      let k = left;
+
+      while (i < n1 && j < n2) {
+        if (tempL[i] > tempR[j]) {
+          array[k] = tempR[j];
+          j++;
+        } else {
+          array[k] = tempL[i];
+          i++;
+        }
+        k++;
+        list.add([...array]);
+      }
+
+      while (i < n1) {
+        array[k] = tempL[i];
+        i++;
+        k++;
+        list.add([...array]);
+      }
+
+      while (j < n2) {
+        array[k] = tempR[j];
+        j++;
+        k++;
+        list.add([...array]);
+      }
+    }
+  }
+
   list.finish();
   return list;
 };
