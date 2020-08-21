@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "display",
+  name: "Display",
   props: ["array"],
 };
 </script>

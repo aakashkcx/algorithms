@@ -1,20 +1,23 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import Home from "./Home";
-
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: () => import("./Home/"),
   },
   {
-    path: "/sorting-algorithms",
-    name: "Sorting Algorithms",
-    component: () => import("./SortingAlgorithms/"),
+    path: "/sorting",
+    name: "Sorting",
+    component: () => import("./Sorting/"),
+  },
+  {
+    path: "/pathfinding",
+    name: "Pathfinding",
+    component: () => import("./Pathfinding/"),
   },
 ];
 

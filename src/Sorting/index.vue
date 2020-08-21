@@ -39,7 +39,7 @@ import {
 } from "./sorts";
 
 export default {
-  name: "SortingAlgorithms",
+  name: "Sorting",
   components: { Display },
 
   data() {

@@ -2,7 +2,8 @@
   <div>
     <nav>
       <router-link to="/">Home</router-link> |
-      <router-link to="/sorting-algorithms">Sorting Algorithms</router-link>
+      <router-link to="/sorting">Sorting</router-link> |
+      <router-link to="/pathfinding">Pathfinding</router-link>
     </nav>
     <router-view />
   </div>
