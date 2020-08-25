@@ -19,8 +19,8 @@ export default {
 <style scoped>
 #display {
   display: flex;
-  height: 500px;
   width: 1000px;
+  height: 500px;
   margin: auto;
   align-items: flex-end;
 }
