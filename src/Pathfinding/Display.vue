@@ -37,8 +37,8 @@ export default {
       }
     },
 
-    mouse(coords, { buttons }) {
-      if (buttons) this.$emit("draw", { coords, buttons });
+    mouse(coords, { buttons, ctrlKey, altKey }) {
+      if (buttons) this.$emit("draw", { coords, buttons, ctrlKey, altKey });
     },
   },
 };
