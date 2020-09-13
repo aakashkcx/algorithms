@@ -34,18 +34,18 @@ export default {
 
   methods: {
     newGrid() {
-      let start = (this.start = [10, 12]);
-      let end = (this.end = [40, 12]);
-      let array = [...Array(25)].map(() => Array(50).fill(CELLS.CELL));
-      array[start[1]][start[0]] = CELLS.START;
-      array[end[1]][end[0]] = CELLS.END;
+      let [sx, sy] = (this.start = [10, 12]);
+      let [ex, ey] = (this.end = [40, 12]);
+      let array = [...Array(50)].map(() => Array(25).fill(CELLS.CELL));
+      array[sx][sy] = CELLS.START;
+      array[ex][ey] = CELLS.END;
       this.array = array;
     },
 
     setCell([x, y], cellType) {
-      let row = [...this.array[y]];
-      row[x] = cellType;
-      this.$set(this.array, y, row);
+      let column = [...this.array[x]];
+      column[y] = cellType;
+      this.$set(this.array, x, column);
     },
 
     draw({ coords: [x, y], buttons, ctrlKey, altKey }) {

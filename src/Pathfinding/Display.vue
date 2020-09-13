@@ -1,10 +1,10 @@
 <template>
   <div id="display">
-    <div class="row" v-for="(row, y) in array" :key="y" :row="y">
+    <div class="column" v-for="(column, x) in array" :key="x" :column="x">
       <div
         class="cell"
-        v-for="(cell, x) in row"
-        :key="x"
+        v-for="(cell, y) in column"
+        :key="y"
         :x="x"
         :y="y"
         :style="{ backgroundColor: getColor(cell) }"
@@ -47,16 +47,17 @@ export default {
 <style scoped>
 #display {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 1000px;
   height: 500px;
   margin: auto;
   border: solid 1px black;
 }
 
-.row {
+.column {
   display: flex;
-  height: 100%;
+  flex-direction: column;
+  width: 100%;
 }
 
 .cell {
