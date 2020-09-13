@@ -30,8 +30,12 @@ export default {
           return "dimgray";
         case CELLS.CELL:
           return "white";
+        case CELLS.VISITED:
+          return "gray";
+        case CELLS.PATH:
+          return "lightgray";
         case CELLS.START:
-          return "yellow";
+          return "red";
         case CELLS.END:
           return "green";
       }

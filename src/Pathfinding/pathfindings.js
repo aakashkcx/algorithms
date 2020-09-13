@@ -1,6 +1,8 @@
 export const CELLS = {
   WALL: 0,
   CELL: 1,
-  START: 2,
-  END: 3,
+  VISITED: 2,
+  PATH: 3,
+  START: 4,
+  END: 5,
 };
