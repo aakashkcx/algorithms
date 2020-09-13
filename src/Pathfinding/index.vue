@@ -48,17 +48,17 @@ export default {
       this.$set(this.array, x, column);
     },
 
-    draw({ coords: [x, y], buttons, ctrlKey, altKey }) {
-      if (buttons != 1) this.setCell([x, y], CELLS.CELL);
+    draw({ coords, buttons, ctrlKey, altKey }) {
+      if (buttons != 1) this.setCell(coords, CELLS.CELL);
       else if (ctrlKey) {
-        this.setCell([x, y], CELLS.START);
+        this.setCell(coords, CELLS.START);
         this.setCell(this.start, CELLS.CELL);
-        this.start = [x, y];
+        this.start = coords;
       } else if (altKey) {
-        this.setCell([x, y], CELLS.END);
+        this.setCell(coords, CELLS.END);
         this.setCell(this.end, CELLS.CELL);
-        this.end = [x, y];
-      } else this.setCell([x, y], CELLS.WALL);
+        this.end = coords;
+      } else this.setCell(coords, CELLS.WALL);
     },
   },
 };
