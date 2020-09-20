@@ -31,9 +31,9 @@ export default {
         case CELLS.CELL:
           return "white";
         case CELLS.VISITED:
-          return "gray";
-        case CELLS.PATH:
           return "lightgray";
+        case CELLS.PATH:
+          return "gold";
         case CELLS.START:
           return "red";
         case CELLS.END:
