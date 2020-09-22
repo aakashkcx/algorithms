@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { CELLS } from "./pathfindings";
+import { CELLS } from "./algorithms";
 
 export default {
   name: "Display",
@@ -52,16 +52,17 @@ export default {
 #display {
   display: flex;
   flex-direction: row;
-  width: 1000px;
-  height: 500px;
+  width: 1280px;
+  height: 720px;
   margin: auto;
-  border: solid 1px black;
+  border: solid 0.5px black;
 }
 
 .column {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   width: 100%;
+  height: 100%;
 }
 
 .cell {

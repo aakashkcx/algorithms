@@ -6,15 +6,18 @@
       <button @click="newGrid">New Grid</button>
     </div>
     <div>
-      <button>Depth-First Search</button>
-      <button>Breadth-First Search</button>
+      <button @click="dijkstras">Dijkstras</button>
     </div>
   </div>
 </template>
 
 <script>
 import Display from "./Display";
-import { CELLS } from "./pathfindings";
+import { CELLS, dijkstrasAlgorithm } from "./algorithms";
+
+const [COLS, ROWS] = [64, 32];
+const START = [8, 16];
+const END = [56, 16];
 
 export default {
   name: "Pathfinding",
@@ -34,15 +37,17 @@ export default {
 
   methods: {
     newGrid() {
-      let [sx, sy] = (this.start = [10, 12]);
-      let [ex, ey] = (this.end = [40, 12]);
-      let array = [...Array(50)].map(() => Array(25).fill(CELLS.CELL));
+      const array = [...Array(COLS)].map(() => Array(ROWS).fill(CELLS.CELL));
+      const [sx, sy] = (this.start = START);
+      const [ex, ey] = (this.end = END);
       array[sx][sy] = CELLS.START;
       array[ex][ey] = CELLS.END;
       this.array = array;
     },
 
     setCell([x, y], cellType) {
+      if (x == this.start[0] && y == this.start[1]) return;
+      if (x == this.end[0] && y == this.end[1]) return;
       let column = [...this.array[x]];
       column[y] = cellType;
       this.$set(this.array, x, column);
@@ -52,13 +57,19 @@ export default {
       if (buttons != 1) this.setCell(coords, CELLS.CELL);
       else if (ctrlKey) {
         this.setCell(coords, CELLS.START);
-        this.setCell(this.start, CELLS.CELL);
+        let oldStart = this.start;
         this.start = coords;
+        this.setCell(oldStart, CELLS.CELL);
       } else if (altKey) {
         this.setCell(coords, CELLS.END);
-        this.setCell(this.end, CELLS.CELL);
+        let oldEnd = this.end;
         this.end = coords;
+        this.setCell(oldEnd, CELLS.CELL);
       } else this.setCell(coords, CELLS.WALL);
+    },
+
+    dijkstras() {
+      dijkstrasAlgorithm(this.array, this.start, this.end, this.setCell);
     },
   },
 };
