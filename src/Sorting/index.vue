@@ -36,7 +36,7 @@ import {
   selectionSort,
   mergeSort,
   quickSort,
-} from "./sorts";
+} from "./algorithms";
 
 export default {
   name: "Sorting",

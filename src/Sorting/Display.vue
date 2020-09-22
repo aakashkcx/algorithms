@@ -4,7 +4,7 @@
       class="item"
       v-for="(value, index) in array"
       :key="index"
-      :style="{ height: value * 5 + 'px' }"
+      :style="{ height: value * 7.2 + 'px' }"
     ></div>
   </div>
 </template>
@@ -19,13 +19,13 @@ export default {
 <style scoped>
 #display {
   display: flex;
-  width: 1000px;
-  height: 500px;
+  width: 1280px;
+  height: 720px;
   margin: auto;
   align-items: flex-end;
 }
 .item {
   background-color: black;
-  width: 10px;
+  width: 100%;
 }
 </style>
