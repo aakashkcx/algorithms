@@ -9,6 +9,7 @@ export const CELLS = {
 
 export const dijkstrasAlgorithm = (array, start, end, setCell) => {
   const unvisited = [];
+
   const distance = {};
   const previous = {};
   const visited = {};
@@ -17,11 +18,10 @@ export const dijkstrasAlgorithm = (array, start, end, setCell) => {
     for (let y = 0; y < array[x].length; y++) {
       if (array[x][y] == CELLS.WALL) continue;
       distance[[x, y]] = Infinity;
-      previous[[x, y]] = undefined;
       visited[[x, y]] = false;
-      unvisited.push([x, y]);
     }
 
+  unvisited.push(start);
   distance[start] = 0;
 
   const loop = () => {
@@ -29,19 +29,18 @@ export const dijkstrasAlgorithm = (array, start, end, setCell) => {
 
     unvisited.sort((a, b) => distance[a] - distance[b]);
     const current = unvisited.shift();
+
     const [x, y] = current;
     visited[current] = true;
     setCell(current, CELLS.VISITED);
 
     if (x == end[0] && y == end[1]) {
-      const path = [end];
       let temp = end;
       while (previous[temp]) {
-        path.push(previous[temp]);
         temp = previous[temp];
         setCell(temp, CELLS.PATH);
       }
-      return path.reverse();
+      return;
     }
 
     const neighbors = [];
@@ -54,6 +53,7 @@ export const dijkstrasAlgorithm = (array, start, end, setCell) => {
       if (!visited[neighbor] && distance[current] + 1 < distance[neighbor]) {
         distance[neighbor] = distance[current] + 1;
         previous[neighbor] = current;
+        unvisited.push(neighbor);
       }
 
     window.requestAnimationFrame(loop);
@@ -64,39 +64,45 @@ export const dijkstrasAlgorithm = (array, start, end, setCell) => {
 
 export const aStarSearch = (array, start, end, setCell) => {
   const unvisited = [];
-  const distance = {};
+
+  const gScore = {};
+  const fScore = {};
   const previous = {};
   const visited = {};
+
+  const heuristic = ([x, y]) => {
+    return Math.abs(x - end[0]) + Math.abs(y - end[1]);
+  };
 
   for (let x = 0; x < array.length; x++)
     for (let y = 0; y < array[x].length; y++) {
       if (array[x][y] == CELLS.WALL) continue;
-      distance[[x, y]] = Infinity;
-      previous[[x, y]] = undefined;
+      gScore[[x, y]] = Infinity;
+      fScore[[x, y]] = Infinity;
       visited[[x, y]] = false;
-      unvisited.push([x, y]);
     }
 
-  distance[start] = 0;
+  unvisited.push(start);
+  gScore[start] = 0;
+  fScore[start] = heuristic(start);
 
   const loop = () => {
     if (!unvisited.length) return;
 
-    unvisited.sort((a, b) => distance[a] - distance[b]);
+    unvisited.sort((a, b) => fScore[a] - fScore[b]);
     const current = unvisited.shift();
+
     const [x, y] = current;
     visited[current] = true;
     setCell(current, CELLS.VISITED);
 
     if (x == end[0] && y == end[1]) {
-      const path = [end];
       let temp = end;
       while (previous[temp]) {
-        path.push(previous[temp]);
         temp = previous[temp];
         setCell(temp, CELLS.PATH);
       }
-      return path.reverse();
+      return;
     }
 
     const neighbors = [];
@@ -106,9 +112,11 @@ export const aStarSearch = (array, start, end, setCell) => {
     if (y > 0) neighbors.push([x, y - 1]);
 
     for (const neighbor of neighbors)
-      if (!visited[neighbor] && distance[current] + 1 < distance[neighbor]) {
-        distance[neighbor] = distance[current] + 1;
+      if (gScore[current] + 1 < gScore[neighbor]) {
+        gScore[neighbor] = gScore[current] + 1;
+        fScore[neighbor] = gScore[neighbor] + heuristic(neighbor);
         previous[neighbor] = current;
+        if (!visited[neighbor]) unvisited.push(neighbor);
       }
 
     window.requestAnimationFrame(loop);

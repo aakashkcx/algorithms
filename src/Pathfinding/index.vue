@@ -7,13 +7,14 @@
     </div>
     <div>
       <button @click="dijkstras">Dijkstras</button>
+      <button @click="aStar">A* Search</button>
     </div>
   </div>
 </template>
 
 <script>
 import Display from "./Display";
-import { CELLS, dijkstrasAlgorithm } from "./algorithms";
+import { CELLS, dijkstrasAlgorithm, aStarSearch } from "./algorithms";
 
 const [COLS, ROWS] = [64, 32];
 const START = [8, 16];
@@ -70,6 +71,10 @@ export default {
 
     dijkstras() {
       dijkstrasAlgorithm(this.array, this.start, this.end, this.setCell);
+    },
+
+    aStar() {
+      aStarSearch(this.array, this.start, this.end, this.setCell);
     },
   },
 };
