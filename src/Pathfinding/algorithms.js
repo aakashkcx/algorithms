@@ -7,6 +7,12 @@ export const CELLS = {
   END: 5,
 };
 
+let STOP = false;
+
+export const stop = () => {
+  STOP = true;
+};
+
 export const dijkstrasAlgorithm = (array, start, end, setCell) => {
   const unvisited = [];
 
@@ -56,7 +62,8 @@ export const dijkstrasAlgorithm = (array, start, end, setCell) => {
         unvisited.push(neighbor);
       }
 
-    window.requestAnimationFrame(loop);
+    if (!STOP) window.requestAnimationFrame(loop);
+    else STOP = false;
   };
 
   window.requestAnimationFrame(loop);
@@ -119,7 +126,8 @@ export const aStarSearch = (array, start, end, setCell) => {
         if (!visited[neighbor]) unvisited.push(neighbor);
       }
 
-    window.requestAnimationFrame(loop);
+    if (!STOP) window.requestAnimationFrame(loop);
+    else STOP = false;
   };
 
   window.requestAnimationFrame(loop);

@@ -9,12 +9,15 @@
       <button @click="dijkstras">Dijkstras</button>
       <button @click="aStar">A* Search</button>
     </div>
+    <div>
+      <button @click="stop">Stop</button>
+    </div>
   </div>
 </template>
 
 <script>
 import Display from "./Display";
-import { CELLS, dijkstrasAlgorithm, aStarSearch } from "./algorithms";
+import { CELLS, stop, dijkstrasAlgorithm, aStarSearch } from "./algorithms";
 
 const [COLS, ROWS] = [64, 32];
 const START = [8, 16];
@@ -44,6 +47,10 @@ export default {
       array[sx][sy] = CELLS.START;
       array[ex][ey] = CELLS.END;
       this.array = array;
+    },
+
+    stop() {
+      stop();
     },
 
     setCell([x, y], cellType) {
