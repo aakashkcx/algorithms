@@ -1,24 +1,54 @@
 # algorithms
 
-## Project setup
+An algorithm visualiser web app client made with Vue.js that visualises common sorting and pathfinding algorithms.
+
+It is deployed at:
+https://aakashkcx.github.com/algorithms/
+
+## Installation
+
+Clone the git repository:
+
 ```
-npm install
+$ git clone https://github.com/aakashkcx/algorithms.git
 ```
 
-### Compiles and hot-reloads for development
+Install dependencies with npm:
+
 ```
-npm run serve
+$ npm install
 ```
 
-### Compiles and minifies for production
+Compile and start server with hot-reload:
+
 ```
-npm run build
+$ npm run serve
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
+## Images
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+[Album](https://imgur.com/a/FoeSkVg)
+
+### Dijkstra's Algorithm
+
+![Dijkstra's Algorithm](https://i.imgur.com/9KO2Gqb.gif)
+
+### A\* Search Algorithm
+
+![A* Search Algorithm](https://i.imgur.com/8VekHpd.gif)
+
+### Bubble Sort
+
+![Bubble Sort](https://i.imgur.com/9rYNqZY.gif)
+
+### Insertion Sort
+
+![Insertion Sort](https://i.imgur.com/vi1oWJb.gif)
+
+### Merge Sort
+
+![Merge Sort](https://i.imgur.com/piyder4.gif)
+
+### Quick Sort
+
+![Quick Sort](https://i.imgur.com/TpL6cTC.gif)
